@@ -17,7 +17,8 @@ namespace TuplePerformance
     [RankColumn]
     public class Program
     {
-        //[Benchmark][MethodImpl(MethodImplOptions.NoInlining)] public static void GetTwoNumbers1() => GetTwoNumbers1(out _, out _);
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public static void GetTwoNumbers1() => GetTwoNumbers1(out _, out _);
 
         public static void GetTwoNumbers1(out int number1, out int number2)
         {
@@ -25,7 +26,14 @@ namespace TuplePerformance
             number2 = 2;
         }
 
-        //[Benchmark][MethodImpl(MethodImplOptions.NoInlining)] public static int GetTwoNumbers4() => GetTwoNumbers4(out _);
+        /// <summary> Not useful, because anonymous Types cannot be used outside the Method without knowing their Property Names </summary>
+        public static dynamic GetAnonType()
+        {
+            var ret = new {a = 1, b = 2};
+            return ret;
+        }
+
+        [MethodImpl(MethodImplOptions.NoInlining)] public static int GetTwoNumbers4() => GetTwoNumbers4(out _);
         public static int GetTwoNumbers4(out int number1)
         {
             number1 = 1;
@@ -42,10 +50,10 @@ namespace TuplePerformance
 
         public static KeyValuePair<int, int> GetTwoNumbers2() => new(1, 2);
 
-        //[Benchmark][MethodImpl(MethodImplOptions.NoInlining)]
+        [MethodImpl(MethodImplOptions.NoInlining)]
         public static Tuple<int, int> GetTwoNumbers3() => new(1, 2);
 
-        //[Benchmark][MethodImpl(MethodImplOptions.NoInlining)]
+        [MethodImpl(MethodImplOptions.NoInlining)]
         public static ValueTuple<int, int> GetTwoNumbers5() => new(1, 2);
 
         /// <summary>
@@ -188,7 +196,7 @@ namespace TuplePerformance
             }
         }
 
-        //[Benchmark][MethodImpl(MethodImplOptions.NoInlining)]
+        [MethodImpl(MethodImplOptions.NoInlining)]
         public  void MaybeReturnOneNumber()
         {
             Maybe<int> tuple = 0;
