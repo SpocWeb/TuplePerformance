@@ -9,6 +9,7 @@ except for returning Tuple{int,int}
 which is 10 times slower. 
 
 In Debug Mode only Methods using Out-Parameters are fast. 
+The relative Speed-Factor from Debug to Release Build is given in the last Column '*'
 
 |               Method |    Release |      Debug | * |
 |:-------------------- |-----------:|-----------:|--:|
